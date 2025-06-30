@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
 
     public void SpawnAxe()
     {
+        Debug.Log("Spawning Axe");
         currentAxe = Instantiate(axePrefab, axeSpawnPoint.position, Quaternion.Euler(0f,0f,-90f), axeSpawnPoint);
         spawnedAxes.Add(currentAxe);
     }
@@ -82,14 +83,11 @@ public class LevelManager : MonoBehaviour
     {
         remainingAxes--;
         UIManager.Instance.UpdateAxeCount(remainingAxes);
-
-        if (remainingAxes > 0 && totalEnemies > 0)
+        if (remainingAxes > 0 )
         {
-
-            Debug.Log("Axe used, spawning a new one.");
             SpawnAxe(); 
         }
-        else if (remainingAxes <= 0 && totalEnemies > 0)
+        else if (remainingAxes <= 0 )
         {
             ReloadLevel(); 
         }
@@ -103,7 +101,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator Reload()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.8f);
         LoadLevel(currentLevelIndex);
     }
 

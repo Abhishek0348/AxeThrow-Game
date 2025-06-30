@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      blue-white-line-pattern_0: 7647867844228070434
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

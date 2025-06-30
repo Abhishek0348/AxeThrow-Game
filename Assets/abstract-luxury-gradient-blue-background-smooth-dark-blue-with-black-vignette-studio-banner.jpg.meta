@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_0: 2618433942207609339
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
