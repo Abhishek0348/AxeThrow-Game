@@ -10,7 +10,8 @@ public class LevelManager : MonoBehaviour
     public Transform levelParent;
     public int currentLevelIndex = 0;
 
-    private GameObject currentLevel;
+    public GameObject currentLevel;
+    public Animator playerAnimator { get; private set; }
     private int totalEnemies;
     private int remainingAxes;
 
@@ -59,6 +60,8 @@ public class LevelManager : MonoBehaviour
             Debug.LogError("AxeSpawnPoint not found in level");
             return;
         }
+
+        playerAnimator = currentLevel.transform.Find("Player/Character").GetComponent<Animator>();
 
         totalEnemies = currentLevel.GetComponentsInChildren<Transform>()
             .Count(t => t.CompareTag("Enemy"));

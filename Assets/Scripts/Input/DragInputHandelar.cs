@@ -7,10 +7,11 @@ public class DragInputHandler : MonoBehaviour
     public float maxForce = 15f;
     private bool isDragging = false;
 
+
     private Vector3 dragStartPoint;
     private Vector3 currentDragPoint;
 
-    public Camera Camera;
+    private Camera Camera;
 
     private void Start()
     {
@@ -41,6 +42,7 @@ public class DragInputHandler : MonoBehaviour
     {
         isDragging = true;
         dragStartPoint = GetMouseWorldPosition();
+        LevelManager.Instance.playerAnimator.SetTrigger("StartThrow");
     }
 
     void Drag()
@@ -75,6 +77,7 @@ public class DragInputHandler : MonoBehaviour
             {
                 axe.ThrowAxe(force);
             }
+            LevelManager.Instance.playerAnimator.SetTrigger("FinishThrow");
         }
 
         trajectoryRenderer.HideTrajectory();
