@@ -164,9 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trajectoryRenderer: {fileID: 1963869571}
+  maxForce: 30
   maxDragDistance: 2
-  maxForce: 15
-  Camera: {fileID: 0}
 --- !u!1 &483644036
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dotPrefab: {fileID: 6609849555684439256, guid: 57d68110f2888e34696f8727c7fa5fa3, type: 3}
-  dotCount: 20
+  dotCount: 13
   dotSpacing: 0.1
 --- !u!4 &1963869572
 Transform:
@@ -1071,8 +1070,10 @@ MonoBehaviour:
   - {fileID: 2642193051891051190, guid: 66744f2ca9acf024ea648aa223201406, type: 3}
   - {fileID: 2642193051891051190, guid: f9130c7e37e3d114cb6ebfb575f33d39, type: 3}
   - {fileID: 2642193051891051190, guid: 68851dae6a319e049884baf2bc1dd321, type: 3}
+  - {fileID: 2642193051891051190, guid: 2c0823bd2527af74c8bb489506e62b4a, type: 3}
   levelParent: {fileID: 1301431981}
   currentLevelIndex: 0
+  currentLevel: {fileID: 0}
   axePrefab: {fileID: 2948251182917838249, guid: 1e68730fe3dce7145b9d74938fd1db26, type: 3}
   currentAxe: {fileID: 0}
   maxAxes: 3

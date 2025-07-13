@@ -3,10 +3,9 @@ using UnityEngine;
 public class DragInputHandler : MonoBehaviour
 {
     public TrajectoryRenderer trajectoryRenderer;
-    public float maxDragDistance = 2f;
-    public float maxForce = 15f;
+    public float maxForce = 30f;        
+    public float maxDragDistance = 1f;
     private bool isDragging = false;
-
 
     private Vector3 dragStartPoint;
     private Vector3 currentDragPoint;
@@ -50,13 +49,13 @@ public class DragInputHandler : MonoBehaviour
         currentDragPoint = GetMouseWorldPosition();
 
         Vector3 dragVector = currentDragPoint - dragStartPoint;
-        if (dragVector.magnitude > maxDragDistance)
-            dragVector = dragVector.normalized * maxDragDistance;
+        dragVector = Vector3.ClampMagnitude(dragVector, maxDragDistance);
+
+        float dragFactor = dragVector.magnitude / maxDragDistance;
+        float force = dragFactor * maxForce;
 
         Vector3 clampedEndPoint = dragStartPoint + dragVector;
-        float FinalForce = dragVector.magnitude / maxDragDistance * maxForce;
-
-        trajectoryRenderer.ShowTrajectory(dragStartPoint, clampedEndPoint, FinalForce);
+        trajectoryRenderer.ShowTrajectory(dragStartPoint, clampedEndPoint, force);
     }
 
     void EndDrag()
@@ -64,23 +63,20 @@ public class DragInputHandler : MonoBehaviour
         isDragging = false;
 
         Vector3 dragVector = currentDragPoint - dragStartPoint;
-        if (dragVector.magnitude > maxDragDistance)
-            dragVector = dragVector.normalized * maxDragDistance;
+        dragVector = Vector3.ClampMagnitude(dragVector, maxDragDistance);
 
-        Vector3 force = (dragStartPoint - (dragStartPoint + dragVector)).normalized * (dragVector.magnitude / maxDragDistance * maxForce);
+        float dragFactor = dragVector.magnitude / maxDragDistance;
+        float throwForce = dragFactor * maxForce; // Linear force scale
 
-        GameObject axeObj = LevelManager.Instance.currentAxe;
-        if (axeObj != null)
+        Vector3 throwDirection = -dragVector.normalized;
+        Vector3 force = throwDirection * throwForce;
+
+        if (LevelManager.Instance.currentAxe.TryGetComponent(out AxeController axe))
         {
-            AxeController axe = axeObj.GetComponent<AxeController>();
-            if (axe != null)
-            {
-                axe.ThrowAxe(force);
-            }
+            axe.ThrowAxe(force);
             LevelManager.Instance.playerAnimator.SetTrigger("FinishThrow");
         }
 
         trajectoryRenderer.HideTrajectory();
     }
-
 }

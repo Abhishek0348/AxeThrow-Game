@@ -18,10 +18,11 @@ public class TrajectoryRenderer : MonoBehaviour
             dots.Add(dot);
         }
     }
-
     public void ShowTrajectory(Vector3 startPoint, Vector3 endPoint, float force)
     {
-        Vector2 velocity = (startPoint - endPoint).normalized * force;
+        Vector2 direction = (startPoint - endPoint).normalized;
+        Vector2 velocity = direction * force;
+
         Vector3 axePos = LevelManager.Instance.currentAxe.transform.position;
 
         for (int i = 0; i < dotCount; i++)
@@ -32,6 +33,7 @@ public class TrajectoryRenderer : MonoBehaviour
             dots[i].SetActive(true);
         }
     }
+
 
     public void HideTrajectory()
     {

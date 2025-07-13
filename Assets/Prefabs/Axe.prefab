@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 9087430129661266331}
-  ThrowForce: 15
+  torqueForce: 50
 --- !u!212 &8849506367280171077
 SpriteRenderer:
   m_ObjectHideFlags: 0
