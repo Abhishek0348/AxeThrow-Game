@@ -1067,10 +1067,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPrefabs:
+  - {fileID: 2642193051891051190, guid: 2c0823bd2527af74c8bb489506e62b4a, type: 3}
+  - {fileID: 2642193051891051190, guid: 91b0d57e0f949e644b9d0eeac399aa0c, type: 3}
   - {fileID: 2642193051891051190, guid: 66744f2ca9acf024ea648aa223201406, type: 3}
   - {fileID: 2642193051891051190, guid: f9130c7e37e3d114cb6ebfb575f33d39, type: 3}
   - {fileID: 2642193051891051190, guid: 68851dae6a319e049884baf2bc1dd321, type: 3}
-  - {fileID: 2642193051891051190, guid: 2c0823bd2527af74c8bb489506e62b4a, type: 3}
   levelParent: {fileID: 1301431981}
   currentLevelIndex: 0
   currentLevel: {fileID: 0}

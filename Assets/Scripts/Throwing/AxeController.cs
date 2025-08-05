@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Rendering;
+using UnityEngine;
 
 public class AxeController : MonoBehaviour
 {
     public Rigidbody2D rb;
     private bool isAxeThrown = false;
-    private bool hasBounced = false; // 🆕
+    private bool hasBounced = false; 
 
     private Animator animator;
 
@@ -17,7 +18,7 @@ public class AxeController : MonoBehaviour
     public void ThrowAxe(Vector2 force)
     {
         isAxeThrown = true;
-        hasBounced = false; // reset bounce state 🆕
+        hasBounced = false; 
         transform.parent = null;
 
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -30,29 +31,33 @@ public class AxeController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Let bouncer handle the bounce
         if (collision.gameObject.CompareTag("Bouncer") && !hasBounced)
         {
             hasBounced = true;
-            return; // skip default behavior
+            return;
         }
 
         if (!isAxeThrown) return;
         isAxeThrown = false;
 
-        if (collision.gameObject.TryGetComponent(out Enemy enemy))
+        if (collision.gameObject.TryGetComponent(out Enemy enemy) )
         {
             HandleStick(collision);
             enemy.OnHit();
+
+            if (collision.gameObject.TryGetComponent(out PatrollingEnemy patrolEnemy))
+            {
+                patrolEnemy.StopPatrolling();
+            }
         }
         else
         {
+            Debug.Log($"Axe collided with: {collision.gameObject.name}");
             HandelDestroy(collision);
         }
 
         LevelManager.Instance.OnAxeUsed();
     }
-
 
     private void HandelDestroy(Collision2D collision)
     {
